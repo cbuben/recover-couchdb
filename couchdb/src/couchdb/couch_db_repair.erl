@@ -70,7 +70,8 @@ make_lost_and_found(DbName, FullPath, TargetName) ->
                 report_progress(Progress,UpdateCount,ChildCount,DbName,RootCount),
                 {Progress + UpdateCount, RootCount+1}
         catch _:Reason ->
-            ?LOG_ERROR("~p merge node at ~p ~p", [?MODULE, Root, Reason])
+            ?LOG_ERROR("~p merge node at ~p ~p", [?MODULE, Root, Reason]),
+            {Progress, RootCount+1}
         end
     end, {0,0}, Nodes).
 
