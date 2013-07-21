@@ -30,16 +30,10 @@ clean: clean_ebin
 
 tag: clean
 	read -p "This is a pretty destructive operation. Press ^C if you are frightened:" foo
-	rm -rf couchdb
 	git submodule update
 	rm -f .gitmodules
 	rm -fr couchtest
 	git rm couchtest
-	mv couchdb couchdb_tmp
-	git rm couchdb
-	mv couchdb_tmp couchdb
-	rm -rf couchdb/.git
-	git add couchdb
 	make recover_couchdb
 	make clean_ebin
 	git add --force recover_couchdb
